@@ -3,13 +3,9 @@ python:
   - "3.5"
 #command to install dependencies
 install:
-  - pip install .
   # Get fab to test fab
   - pip install -e .
 script: pytest
 branches:
   only:
     - master
-notifications:
-  email:
-    - briand.guillaume@outlook.fr
