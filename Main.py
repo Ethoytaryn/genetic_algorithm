@@ -12,8 +12,7 @@ from src.Metier.Genetique import \
     calculer_variance_portee
 from src.Metier.Parametre_simulation import POPULATION_COUNT, GENERATION_COUNT
 
-"""
-"""
+
 def main():
 
     population = generer_population(POPULATION_COUNT)

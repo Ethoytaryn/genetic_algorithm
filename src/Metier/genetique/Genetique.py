@@ -1,121 +1,10 @@
-from random import random, randrange, randint
+from random import randrange, randint
 
+from src.Metier.Parametre_simulation import POPULATION_COUNT
 from src.Metier.Scorpion import generate_scorpion
-from src.Tools.Math import generation_angle_aleatoire, generation_longueur_aleatoire, variance, moyenne
+from src.Metier.genetique.mutation_scorpion import *
+from src.Tools.Math import variance, moyenne
 from src.Tools.Physique import calculer_fitness, calculer_energie_cinetique_max_generation, calculer_portee
-
-from src.Metier.Parametre_simulation import CHANCE_TO_MUTATE, POPULATION_COUNT
-
-
-def muter_angle_tir(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de l'angle en rad
-
-        :rtype:
-    """
-    scorpion[0] = generation_angle_aleatoire()
-    return scorpion
-
-
-def muter_longueur_bras(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[1] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def muter_longueur_base_bras(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[2] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def muter_hauteur_bras(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[3] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def muter_longueur_corde(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[4] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def muter_longueur_fleche(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[5] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def muter_rayon_fleche(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[6] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def muter_masse_volumique(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[7] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def muter_module_Young(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[8] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def muter_coefficient_poisson(scorpion):
-    """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
-
-        :rtype:
-    """
-    scorpion[9] = generation_longueur_aleatoire()
-    return scorpion
-
-
-def scorpion_different(scorpion1, scorpion2):
-    note = 0
-    for i in range(len(scorpion1)):
-        if scorpion1[i] == scorpion2[i]:
-            note += 1
-    if note == 10:
-        return 0
-    else:
-        return 1
 
 
 def generer_enfants(scorpion1, scorpion2):
@@ -177,16 +66,6 @@ def calculer_energie_max(population):
         determine la valeur maximal de l'énergie pour la génération.
     """
     return calculer_energie_cinetique_max_generation(population)
-
-
-def mutation_individu(scorpion):
-    if random() < CHANCE_TO_MUTATE:
-        gene = randrange(0, 9, 1)
-        if gene == 0:
-            scorpion = muter_angle(scorpion)
-        elif gene in [1, 2, 3, 4, 5, 6]:
-            scorpion = muter_longueur(scorpion, gene)
-    return scorpion
 
 
 def selection_parents_tournoi(couples_scorpion_note):

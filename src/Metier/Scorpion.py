@@ -1,11 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from math import pi
 
-from Tools.Constante import ZERO
-from Tools.Math import generation_angle_aleatoire, generation_longueur_aleatoire
+from random import uniform
 
-from src.Metier.Parametre_simulation import LIMITE_LONGUEUR_BASSE,LIMITE_LONGUEUR_HAUTE
+from src.Metier.Parametre_simulation import \
+    LIMITE_ANGLE_BASSE,\
+    LIMITE_ANGLE_HAUTE, \
+    LIMITE_MASSE_VOL_BASSE,\
+    LIMITE_MASSE_VOL_HAUTE, \
+    LIMITE_MODULE_YOUNG_BASSE, \
+    LIMITE_MODULE_YOUNG_HAUTE, \
+    LIMITE_POISSON_BASSE,\
+    LIMITE_POISSON_HAUTE,\
+    LIMITE_LONGUEUR_BASSE,\
+    LIMITE_LONGUEUR_HAUTE
 
 
 def generate_scorpion():
@@ -29,16 +37,16 @@ def generate_scorpion():
         :rtype:
     """
     return[
-            generation_angle_aleatoire(ZERO, pi / 2),
-            generation_longueur_aleatoire(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE),
-            generation_longueur_aleatoire(0.1, 100),
-            generation_longueur_aleatoire(0.0, 100),
-            generation_longueur_aleatoire(0.01, 100),
-            generation_longueur_aleatoire(0.01, 100),
-            generation_longueur_aleatoire(0.01, 0.75),
-            500,
-            10,
-            0.2
+            uniform(LIMITE_ANGLE_BASSE, LIMITE_ANGLE_HAUTE),
+            uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE),
+            uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE),
+            uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE),
+            uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE),
+            uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE),
+            uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE),
+            uniform(LIMITE_MASSE_VOL_BASSE, LIMITE_MASSE_VOL_HAUTE),
+            uniform(LIMITE_MODULE_YOUNG_BASSE, LIMITE_MODULE_YOUNG_HAUTE),
+            uniform(LIMITE_POISSON_BASSE, LIMITE_POISSON_HAUTE)
     ]
 
 
@@ -60,7 +68,7 @@ def obtenir_longueur_bras(scorpion):
     return scorpion[1]
 
 
-def obtenir_longueur_base(scorpion):
+def obtenir_longueur_base_bras(scorpion):
     """
         Fonction qui renvoie la longueur de la base du bras du genetic_algorithm en m
 
@@ -69,7 +77,7 @@ def obtenir_longueur_base(scorpion):
     return scorpion[2]
 
 
-def obtenir_hauteur_base(scorpion):
+def obtenir_hauteur_base_bras(scorpion):
     """
         Fonction qui renvoie la hauteur du bras du genetic_algorithm en m
 
@@ -130,3 +138,14 @@ def obtenir_coeff_poisson_materiau(scorpion):
         :rtype: float
     """
     return scorpion[9]
+
+
+def scorpion_different(scorpion1, scorpion2):
+    note = 0
+    for i in range(len(scorpion1)):
+        if scorpion1[i] == scorpion2[i]:
+            note += 1
+    if note == 10:
+        return 0
+    else:
+        return 1
