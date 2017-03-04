@@ -5,7 +5,7 @@ python:
 install:
   # Get fab to test fab
   - pip install -e .
-script: pytest
+script: py.test
 branches:
   only:
     - master
