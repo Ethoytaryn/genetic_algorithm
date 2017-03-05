@@ -1,3 +1,14 @@
+from src.Metier.Parametre_simulation import \
+    LIMITE_ANGLE_BASSE,\
+    LIMITE_ANGLE_HAUTE, \
+    LIMITE_MASSE_VOL_BASSE,\
+    LIMITE_MASSE_VOL_HAUTE, \
+    LIMITE_MODULE_YOUNG_BASSE, \
+    LIMITE_MODULE_YOUNG_HAUTE, \
+    LIMITE_POISSON_BASSE,\
+    LIMITE_POISSON_HAUTE,\
+    LIMITE_LONGUEUR_BASSE,\
+    LIMITE_LONGUEUR_HAUTE
 from src.Metier.Scorpion import \
     generate_scorpion, \
     obtenir_angle,\
@@ -10,18 +21,7 @@ from src.Metier.Scorpion import \
     obtenir_hauteur_base_bras,\
     obtenir_longueur_corde,\
     obtenir_rayon_fleche, \
-    scorpion_different
-from src.Metier.Parametre_simulation import \
-    LIMITE_ANGLE_BASSE,\
-    LIMITE_ANGLE_HAUTE, \
-    LIMITE_MASSE_VOL_BASSE,\
-    LIMITE_MASSE_VOL_HAUTE, \
-    LIMITE_MODULE_YOUNG_BASSE, \
-    LIMITE_MODULE_YOUNG_HAUTE, \
-    LIMITE_POISSON_BASSE,\
-    LIMITE_POISSON_HAUTE,\
-    LIMITE_LONGUEUR_BASSE,\
-    LIMITE_LONGUEUR_HAUTE
+    scorpion_identique
 
 
 class TestScorpion:
@@ -57,17 +57,17 @@ class TestScorpion:
         assert LIMITE_MODULE_YOUNG_BASSE <= obtenir_module_young_materiau(self.scorpion) <= LIMITE_MODULE_YOUNG_HAUTE
         assert LIMITE_POISSON_BASSE <= obtenir_coeff_poisson_materiau(self.scorpion) <= LIMITE_POISSON_HAUTE
 
-    def test_scorpions_differents(self):
+    def test_scorpions_identique(self):
         scorpion2 = TestScorpion.generate_scorpion_null()
-        assert scorpion_different(self.scorpion, self.scorpion) == 0
-        assert (scorpion_different(scorpion2, self.scorpion)) == 1
+        assert scorpion_identique(self.scorpion, self.scorpion) == 1
+        assert scorpion_identique(scorpion2, self.scorpion) == 0
 
     def test_generate_scorpion_null(self):
         scorpion_null = TestScorpion.generate_scorpion_null()
         scorpion_null2 = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
         assert len(scorpion_null) == 10
         assert len(scorpion_null2) == 10
-        assert scorpion_different(scorpion_null, scorpion_null2) == 0
+        assert scorpion_identique(scorpion_null, scorpion_null2) == 1
 
     @staticmethod
     def generate_scorpion_null():

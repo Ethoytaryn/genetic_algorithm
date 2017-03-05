@@ -140,12 +140,12 @@ def obtenir_coeff_poisson_materiau(scorpion):
     return scorpion[9]
 
 
-def scorpion_different(scorpion1, scorpion2):
+def scorpion_identique(scorpion1, scorpion2):
     note = 0
     for i in range(len(scorpion1)):
         if scorpion1[i] == scorpion2[i]:
             note += 1
     if note == 10:
-        return 0
-    else:
         return 1
+    else:
+        return 0
