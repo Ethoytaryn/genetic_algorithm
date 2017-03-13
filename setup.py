@@ -7,5 +7,5 @@ setup(name='genetic_algorithm',
       description='Python genetic algorithm',
       author='Guillaume Briand',
       url='https://github.com/Ethoytaryn/genetic_algorithm.git',
-      packages=['src.Metier', 'src.Metier.genetique', 'src.Tools']
-     )
+      packages=['src.Metier', 'src.Metier.genetique', 'src.Tools'], requires=['matplotlib', 'src', 'src']
+      )

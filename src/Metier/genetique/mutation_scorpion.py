@@ -31,7 +31,6 @@ def muter_angle_tir(scorpion):
     while continuer:
         new_value = uniform(LIMITE_ANGLE_BASSE, LIMITE_ANGLE_HAUTE)
         if new_value != obtenir_angle(scorpion):
-            print(new_value)
             scorpion[0] = new_value
             continuer = 0
     return scorpion
@@ -47,7 +46,6 @@ def muter_longueur_bras(scorpion):
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
         if new_value != obtenir_longueur_bras(scorpion):
-            print(new_value)
             scorpion[1] = new_value
             continuer = 0
     return scorpion
@@ -63,7 +61,6 @@ def muter_longueur_base_bras(scorpion):
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
         if new_value != obtenir_longueur_base_bras(scorpion):
-            print(new_value)
             scorpion[2] = new_value
             continuer = 0
     return scorpion
@@ -79,7 +76,6 @@ def muter_hauteur_base_bras(scorpion):
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
         if new_value != obtenir_longueur_base_bras(scorpion):
-            print(new_value)
             scorpion[3] = new_value
             continuer = 0
     return scorpion
@@ -95,7 +91,6 @@ def muter_longueur_corde(scorpion):
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
         if new_value != obtenir_longueur_base_bras(scorpion):
-            print(new_value)
             scorpion[4] = new_value
             continuer = 0
     return scorpion
@@ -111,7 +106,6 @@ def muter_longueur_fleche(scorpion):
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
         if new_value != obtenir_longueur_base_bras(scorpion):
-            print(new_value)
             scorpion[5] = new_value
             continuer = 0
     return scorpion
@@ -127,7 +121,6 @@ def muter_rayon_fleche(scorpion):
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
         if new_value != obtenir_longueur_base_bras(scorpion):
-            print(new_value)
             scorpion[6] = new_value
             continuer = 0
     return scorpion
@@ -143,7 +136,6 @@ def muter_masse_volumique(scorpion):
     while continuer:
         new_value = uniform(LIMITE_MASSE_VOL_BASSE, LIMITE_MASSE_VOL_HAUTE)
         if new_value != obtenir_longueur_base_bras(scorpion):
-            print(new_value)
             scorpion[7] = new_value
             continuer = 0
     return scorpion
@@ -158,7 +150,6 @@ def muter_module_young(scorpion):
     while continuer:
         new_value = uniform(LIMITE_MODULE_YOUNG_BASSE, LIMITE_MODULE_YOUNG_HAUTE)
         if new_value != obtenir_longueur_base_bras(scorpion):
-            print(new_value)
             scorpion[8] = new_value
             continuer = 0
     return scorpion
@@ -174,19 +165,18 @@ def muter_coefficient_poisson(scorpion):
     while continuer:
         new_value = uniform(LIMITE_POISSON_BASSE, LIMITE_POISSON_HAUTE)
         if new_value != obtenir_longueur_base_bras(scorpion):
-            print(new_value)
             scorpion[9] = new_value
             continuer = 0
     return scorpion
 
 
-def mutation_individu(scorpion):
+def mutation_individu(scorpion, chance_to_mutate):
     """
         Fonction qui peut entraîner une mutation (dependant de la constante CHANCE_TO_MUTATE) sur un gene aléatoire
 
         :rtype:
     """
-    if random() < CHANCE_TO_MUTATE:
+    if random() < chance_to_mutate:
         gene = randrange(0, 9, 1)
         if gene == 0:
             scorpion = muter_angle_tir(scorpion)

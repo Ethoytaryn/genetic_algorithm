@@ -1,4 +1,5 @@
 from src.Metier.Scorpion import generate_scorpion, scorpion_identique
+from src.Metier.genetique.evaluation_population import evaluation_population
 from src.Metier.genetique.population_generator import \
     generer_population, \
     generation_enfant_croise, \
@@ -59,9 +60,3 @@ class TestMutationScorpion:
         enfant = generation_enfant(pere, mere, 0)
         assert len(enfant) == 10
         assert scorpion_identique(enfant, pere) | scorpion_identique(enfant, mere)
-
-    def test_generer_generation_suivante(self):
-        scorpions = generer_population(1000)
-        new_generation = generer_generation_suivante(scorpions, 1)
-        assert len(new_generation) == 1000
-

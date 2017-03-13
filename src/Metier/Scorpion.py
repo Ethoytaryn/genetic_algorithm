@@ -14,6 +14,12 @@ from src.Metier.Parametre_simulation import \
     LIMITE_POISSON_HAUTE,\
     LIMITE_LONGUEUR_BASSE,\
     LIMITE_LONGUEUR_HAUTE
+from src.Tools.Physique import calculer_ressort, calculer_longueur_vide, calculer_longueur_deplacement, \
+    calculer_masse_projectile,\
+    calculer_vitesse, calculer_portee,\
+    calculer_energie_cinetique_joule, \
+    calculer_fleche_bras_max,\
+    calculer_energie_cinetique_tnt
 
 
 def generate_scorpion():
@@ -149,3 +155,104 @@ def scorpion_identique(scorpion1, scorpion2):
         return 1
     else:
         return 0
+
+
+def calculer_ressort_scorpion(scorpion):
+    return calculer_ressort(
+        obtenir_module_young_materiau(scorpion),
+        obtenir_coeff_poisson_materiau(scorpion))
+
+
+def calculer_longueur_vide_scorpion(scorpion):
+    return calculer_longueur_vide(
+        obtenir_longueur_bras(scorpion),
+        obtenir_longueur_corde(scorpion)
+    )
+
+
+def calculer_longueur_deplacement_scorpion(scorpion):
+    return calculer_longueur_deplacement(
+        obtenir_longueur_fleche(scorpion),
+        obtenir_longueur_bras(scorpion),
+        obtenir_longueur_corde(scorpion)
+    )
+
+
+def calculer_masse_projectile_scorpion(scorpion):
+    return calculer_masse_projectile(
+        obtenir_masse_volumique_materiau(scorpion),
+        obtenir_rayon_fleche(scorpion),
+        obtenir_longueur_fleche(scorpion)
+    )
+
+
+def calculer_vitesse_scorpion(scorpion):
+    return calculer_vitesse(
+        obtenir_module_young_materiau(scorpion),
+        obtenir_coeff_poisson_materiau(scorpion),
+        obtenir_longueur_fleche(scorpion),
+        obtenir_longueur_bras(scorpion),
+        obtenir_longueur_corde(scorpion),
+        obtenir_masse_volumique_materiau(scorpion),
+        obtenir_rayon_fleche(scorpion)
+    )
+
+
+def calculer_portee_scorpion(scorpion):
+    return calculer_portee(
+        obtenir_angle(scorpion),
+        obtenir_module_young_materiau(scorpion),
+        obtenir_coeff_poisson_materiau(scorpion),
+        obtenir_longueur_fleche(scorpion),
+        obtenir_longueur_bras(scorpion),
+        obtenir_longueur_corde(scorpion),
+        obtenir_masse_volumique_materiau(scorpion),
+        obtenir_rayon_fleche(scorpion)
+    )
+
+
+def calculer_energie_cinetique_joule_scorpion(scorpion):
+    return calculer_energie_cinetique_joule(
+        obtenir_masse_volumique_materiau(scorpion),
+        obtenir_rayon_fleche(scorpion),
+        obtenir_longueur_fleche(scorpion),
+        obtenir_module_young_materiau(scorpion),
+        obtenir_coeff_poisson_materiau(scorpion),
+        obtenir_longueur_bras(scorpion),
+        obtenir_longueur_corde(scorpion)
+    )
+
+
+def calculer_energie_cinetique_tnt_scorpion(scorpion):
+    return calculer_energie_cinetique_tnt(calculer_energie_cinetique_joule_scorpion(scorpion))
+
+
+def calculer_fleche_bras_max_scorpion(scorpion):
+    return calculer_fleche_bras_max(
+        obtenir_module_young_materiau(scorpion),
+        obtenir_coeff_poisson_materiau(scorpion),
+        obtenir_longueur_fleche(scorpion),
+        obtenir_longueur_bras(scorpion),
+        obtenir_longueur_corde(scorpion),
+        obtenir_longueur_base_bras(scorpion),
+        obtenir_hauteur_base_bras(scorpion)
+    )
+
+
+def afficher_scorpion(scorpion):
+    print("caracteristique du scorpion :")
+    print("Angle de tir : " + str(obtenir_angle(scorpion)) + " rad")
+    print("Longueur du bras :" + str(obtenir_longueur_bras(scorpion)) + " m")
+    print("Largeur de la base du bras : " + str(obtenir_longueur_base_bras(scorpion)) + " m")
+    print("Hauteur de la base du bras : " + str(obtenir_hauteur_base_bras(scorpion)) + " m")
+    print("Longueur de la corde : " + str(obtenir_longueur_corde(scorpion)) + " m")
+    print("Longueur de la fleche : " + str(obtenir_longueur_fleche(scorpion)) + " m")
+    print("Rayon de la fleche" + str(obtenir_rayon_fleche(scorpion)) + " m")
+    print("Masse volumique : " + str(obtenir_masse_volumique_materiau(scorpion)) + " kg / m3")
+    print("Module d'Young : " + str(obtenir_module_young_materiau(scorpion)) + " GPa")
+    print("Coefficient de poisson : " + str(obtenir_coeff_poisson_materiau(scorpion)))
+    print("Masse du projectile : " + str(calculer_masse_projectile_scorpion(scorpion))+" kg")
+    print("Ressort " + str(calculer_ressort_scorpion(scorpion)) + " en N / m")
+    print("Vitesse du projectile :" + str(calculer_vitesse_scorpion(scorpion))+"en m / s")
+    print("Portee du scorpion : "+str(calculer_portee_scorpion(scorpion))+" en m")
+

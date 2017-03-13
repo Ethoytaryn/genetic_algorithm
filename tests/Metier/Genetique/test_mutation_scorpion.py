@@ -1,15 +1,5 @@
-from src.Metier.genetique.mutation_scorpion import \
-    muter_angle_tir, \
-    muter_longueur_bras, \
-    muter_longueur_base_bras, \
-    muter_hauteur_base_bras,\
-    muter_longueur_fleche,\
-    muter_longueur_corde,\
-    muter_rayon_fleche,\
-    muter_coefficient_poisson,\
-    muter_masse_volumique,\
-    muter_module_young, \
-    mutation_individu
+import copy
+
 from src.Metier.Scorpion import \
     generate_scorpion, \
     obtenir_angle,\
@@ -22,7 +12,18 @@ from src.Metier.Scorpion import \
     obtenir_hauteur_base_bras,\
     obtenir_longueur_corde,\
     obtenir_rayon_fleche
-import copy
+from src.Metier.genetique.mutation_scorpion import \
+    muter_angle_tir, \
+    muter_longueur_bras, \
+    muter_longueur_base_bras, \
+    muter_hauteur_base_bras,\
+    muter_longueur_fleche,\
+    muter_longueur_corde,\
+    muter_rayon_fleche,\
+    muter_coefficient_poisson,\
+    muter_masse_volumique,\
+    muter_module_young, \
+    mutation_individu
 
 
 class TestMutationScorpion:
@@ -170,5 +171,6 @@ class TestMutationScorpion:
         assert obtenir_coeff_poisson_materiau(scorpion_origin) != obtenir_coeff_poisson_materiau(self.scorpion)
 
     def test_mutation_individu(self):
+        chance_to_mutate = 1
         scorpion_origin = copy.copy(self.scorpion)
-        mutation_individu(self.scorpion)
+        mutation_individu(scorpion_origin, chance_to_mutate)
