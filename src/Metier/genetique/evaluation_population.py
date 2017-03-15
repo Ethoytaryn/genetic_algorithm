@@ -62,6 +62,7 @@ def calculer_fitness(info_scorpion, energie_max_tnt):
             else:
                 fitness = abs(1/(DESIRED_SCOPE - info_scorpion[2]))*1000 + \
                               (info_scorpion[1]/energie_max_tnt)*0
+                #(exp(-pow((info_scorpion[2]-DESIRED_SCOPE), 2) / (2*DESIRED_SCOPE)) / sqrt(2*pi*DESIRED_SCOPE))*100
                 return fitness
 
 

@@ -1,6 +1,5 @@
 from random import choice, randint
 
-from src.Metier.Parametre_simulation import POPULATION_COUNT
 from src.Metier.Scorpion import scorpion_identique
 
 
@@ -8,7 +7,7 @@ def selection_parents_tournoi(info_scorpion_energie_portee_note):
 
     population_parent = []
 
-    while len(population_parent) < POPULATION_COUNT:
+    while len(population_parent) < len(info_scorpion_energie_portee_note):
 
         scorpion_note_1 = choice(info_scorpion_energie_portee_note)
         continuer = 1

@@ -7,7 +7,15 @@ def calculer_ressort(module_young, coefficient_poisson):
     """
         Fonction qui calcul le ressort en N / m
 
+        :param module_young
+        :param coefficient_poisson
+        :type module_young: float
+        :type coefficient_poisson: float
+        :return: Ressort
         :rtype: float
+
+        .. warning:: Si le coefficient de poisson vaut 0.5, la fonction
+        renvoie 999999999.99
     """
     if coefficient_poisson == 0.5:
         return 999999999.99

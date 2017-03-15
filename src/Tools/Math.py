@@ -1,5 +1,4 @@
-from random import uniform
-
+from math import sqrt
 from src.Tools.Constante import DEUX
 
 
@@ -14,11 +13,19 @@ def moyenne(tableau):
 
 def variance(tableau):
     """
-        Fonction qui la variance moyenne des valeurs d'un tableau
+        Fonction qui calcule la variance moyenne des valeurs d'un tableau
 
         :rtype: float
     """
     m = moyenne(tableau)
     return moyenne([(x - m) ** DEUX for x in tableau])
 
+
+def ecart_type(esperance):
+    """
+        Fonction qui calcul l'écart type en fonction de l'esperance
+
+        :rtype: float
+    """
+    return sqrt(valeur)
 

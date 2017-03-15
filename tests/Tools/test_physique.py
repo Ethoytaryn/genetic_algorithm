@@ -10,7 +10,7 @@ from math import sqrt
 class TestPhysique:
 
     def test_calculer_ressort_infini(self):
-        module_young = 10
+        module_young = 10.0
         coefficient_poisson = .5
         ressort = calculer_ressort(module_young, coefficient_poisson)
         assert ressort == 999999999.99
