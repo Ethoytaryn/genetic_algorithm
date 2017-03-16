@@ -30,7 +30,7 @@ def calculer_longueur_vide(longueur_bras, longueur_corde):
         :rtype: float
     """
     try:
-        return sqrt(pow(longueur_bras, 2)/4 - (pow(longueur_corde, 2)))
+        return sqrt(pow(longueur_bras, 2)/4 - (pow(longueur_corde, 2)/4))
     except ValueError:
         return -1
 

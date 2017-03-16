@@ -1,5 +1,9 @@
+from random import\
+    random, \
+    randrange, \
+    uniform
+
 from src.Metier.Parametre_simulation import \
-    CHANCE_TO_MUTATE,\
     LIMITE_ANGLE_BASSE,\
     LIMITE_ANGLE_HAUTE,\
     LIMITE_LONGUEUR_BASSE,\
@@ -10,22 +14,23 @@ from src.Metier.Parametre_simulation import \
     LIMITE_MODULE_YOUNG_HAUTE, \
     LIMITE_POISSON_BASSE,\
     LIMITE_POISSON_HAUTE
-from random import\
-    random, \
-    randrange, \
-    uniform
-
 from src.Metier.Scorpion import \
     obtenir_angle, \
     obtenir_longueur_bras, \
-    obtenir_longueur_base_bras
+    obtenir_longueur_base_bras, obtenir_longueur_corde, obtenir_longueur_fleche, obtenir_rayon_fleche, \
+    obtenir_masse_volumique_materiau, obtenir_module_young_materiau, obtenir_coeff_poisson_materiau
 
 
 def muter_angle_tir(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur de l'angle en rad
+        Fonction qui simule un mutation de l'angle de tir d'un scorpion en regenerant la valeur de l'angle
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_angle`
     """
     continuer = 1
     while continuer:
@@ -38,9 +43,14 @@ def muter_angle_tir(scorpion):
 
 def muter_longueur_bras(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
+        Fonction qui simule un mutation de la longueur de bras d'un scorpion en regenerant la valeur dans le tableau
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_longueur_bras`
     """
     continuer = 1
     while continuer:
@@ -53,9 +63,15 @@ def muter_longueur_bras(scorpion):
 
 def muter_longueur_base_bras(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
+        Fonction qui simule un mutation de la longueur de la base bras d'un scorpion en regenerant
+        la valeur dans le tableau
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_longueur_base_bras`
     """
     continuer = 1
     while continuer:
@@ -68,9 +84,15 @@ def muter_longueur_base_bras(scorpion):
 
 def muter_hauteur_base_bras(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
+        Fonction qui simule un mutation de la hauteur de la base bras d'un scorpion en regenerant
+        la valeur dans le tableau
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_hauteur_base_bras`
     """
     continuer = 1
     while continuer:
@@ -83,14 +105,19 @@ def muter_hauteur_base_bras(scorpion):
 
 def muter_longueur_corde(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
+        Fonction qui simule un mutation de la longueur de la corde d'un scorpion en regenerant la valeur dans le tableau
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_longueur_corde`
     """
     continuer = 1
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
-        if new_value != obtenir_longueur_base_bras(scorpion):
+        if new_value != obtenir_longueur_corde(scorpion):
             scorpion[4] = new_value
             continuer = 0
     return scorpion
@@ -98,14 +125,20 @@ def muter_longueur_corde(scorpion):
 
 def muter_longueur_fleche(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
+        Fonction qui simule un mutation de la longueur de la fleche d'un scorpion en regenerant
+        la valeur dans le tableau
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_longueur_fleche`
     """
     continuer = 1
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
-        if new_value != obtenir_longueur_base_bras(scorpion):
+        if new_value != obtenir_longueur_fleche(scorpion):
             scorpion[5] = new_value
             continuer = 0
     return scorpion
@@ -113,14 +146,19 @@ def muter_longueur_fleche(scorpion):
 
 def muter_rayon_fleche(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur de la longueur du bras en m
+        Fonction qui simule un mutation du rayon de la fleche d'un scorpion en regenerant la valeur dans le tableau
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_rayon_fleche`
     """
     continuer = 1
     while continuer:
         new_value = uniform(LIMITE_LONGUEUR_BASSE, LIMITE_LONGUEUR_HAUTE)
-        if new_value != obtenir_longueur_base_bras(scorpion):
+        if new_value != obtenir_rayon_fleche(scorpion):
             scorpion[6] = new_value
             continuer = 0
     return scorpion
@@ -128,14 +166,20 @@ def muter_rayon_fleche(scorpion):
 
 def muter_masse_volumique(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur de la masse volumique en kg / m3
+        Fonction qui simule un mutation de la masse volumique du projectile
+        d'un scorpion en regenerant la valeur dans le tableau
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_masse_volumique_materiau`
     """
     continuer = 1
     while continuer:
         new_value = uniform(LIMITE_MASSE_VOL_BASSE, LIMITE_MASSE_VOL_HAUTE)
-        if new_value != obtenir_longueur_base_bras(scorpion):
+        if new_value != obtenir_masse_volumique_materiau(scorpion):
             scorpion[7] = new_value
             continuer = 0
     return scorpion
@@ -143,13 +187,20 @@ def muter_masse_volumique(scorpion):
 
 def muter_module_young(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur du module d'Young en GPa
-        :rtype:
+        Fonction qui simule une mutation du module d'young du materiau de projectile
+         d'un scorpion en regenerant la valeur dans le tableau
+
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_module_young_materiau`
     """
     continuer = 1
     while continuer:
         new_value = uniform(LIMITE_MODULE_YOUNG_BASSE, LIMITE_MODULE_YOUNG_HAUTE)
-        if new_value != obtenir_longueur_base_bras(scorpion):
+        if new_value != obtenir_module_young_materiau(scorpion):
             scorpion[8] = new_value
             continuer = 0
     return scorpion
@@ -157,14 +208,20 @@ def muter_module_young(scorpion):
 
 def muter_coefficient_poisson(scorpion):
     """
-        Fonction qui simule une mutation en regenerant la valeur du coefficient de poisson en
+        Fonction qui simule une mutation du coefficient de poison du materiau du projectile
+         d'un scorpion en regenerant la valeur dans le tableau
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.obtenir_coeff_poisson_materiau`
     """
     continuer = 1
     while continuer:
         new_value = uniform(LIMITE_POISSON_BASSE, LIMITE_POISSON_HAUTE)
-        if new_value != obtenir_longueur_base_bras(scorpion):
+        if new_value != obtenir_coeff_poisson_materiau(scorpion):
             scorpion[9] = new_value
             continuer = 0
     return scorpion
@@ -172,9 +229,26 @@ def muter_coefficient_poisson(scorpion):
 
 def mutation_individu(scorpion, chance_to_mutate):
     """
-        Fonction qui peut entraîner une mutation (dependant de la constante CHANCE_TO_MUTATE) sur un gene aléatoire
+        Fonction qui simule une mutation aleatoire d'un gene d'un scorpion
 
-        :rtype:
+    :param scorpion: scorpion avant mutation
+    :type scorpion: float[10]
+    :param chance_to_mutate: probabilite de mutation
+    :type chance_to_mutate: float
+    :return: scorpion après mutation
+    :rtype: float[10]
+
+    .. seealso:: :func:`src.metier.muter_angle_tir
+    .. seealso:: :func:`src.metier.muter_longueur_bras`
+    .. seealso:: :func:`src.metier.muter_longueur_base_bras`
+    .. seealso:: :func:`src.metier.muter_hauteur_base_bras`
+    .. seealso:: :func:`src.metier.muter_longueur_corde`
+    .. seealso:: :func:`src.metier.muter_longueur_fleche`
+    .. seealso:: :func:`src.metier.muter_rayon_fleche`
+    .. seealso:: :func:`src.metier.muter_masse_volumique`
+    .. seealso:: :func:`src.metier.muter_module_young`
+    .. seealso:: :func:`src.metier.muter_coefficient_poisson`
+    `
     """
     if random() < chance_to_mutate:
         gene = randrange(0, 9, 1)
