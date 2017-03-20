@@ -23,7 +23,7 @@
 	
 <pre><code>Python Main.py</code></pre>
 
-###Affichage console et graphe
+### Affichage console et graphe
 
 Pendant l’exécution du script, les paramètres de la simulation, la progression, le nombre de génération traitée et le temps écoulé seront affichés dans la console.
 Une fois le script terminé, les caractéristiques du meilleur scorpion seront affichés dans la console et une fenêtre avec les graphes : fitness, variance, énergie, portée en fonction de la génération s’ouvrira.
